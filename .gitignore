@@ -1,0 +1,27 @@
+# Python
+*.pyc
+__pycache__/
+
+# Django
+*.sqlite3
+db.sqlite3
+
+# Entorno virtual
+env/
+.venv/
+
+# Configuración específica del sistema
+.idea/
+.vscode/
+
+# Archivos de log
+*.log
+
+# Archivos temporales
+*.tmp
+*.bak
+*.swp
+
+# Archivos de prueba
+coverage/
+pytest_cache/
