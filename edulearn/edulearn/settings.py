@@ -80,7 +80,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'edulearn_db',
         'USER': 'root',
-        'PASSWORD': 'admin',        
+        'PASSWORD': 'romaleonefrainyogurt',        
         'HOST': '127.0.0.1',
         'PORT': 3306,
     }
@@ -132,4 +132,4 @@ LOGIN_URL = 'login'
 
 LOGIN_REDIRECT_URL = '/'
 
-LOGOUT_REDIRECT_URL = '/login/barra'
+LOGOUT_REDIRECT_URL = '/'

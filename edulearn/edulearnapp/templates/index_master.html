@@ -90,9 +90,14 @@
                     <img src="images/img.jpg" alt="">John Doe
                   </a>
                   <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item"  href="javascript:;"> Perfil</a>
-                    <a class="dropdown-item"  href="{% url 'logout' %}"><i class="fa fa-sign-out pull-right"></i>Cerrar Sesión</a>
-                  </div>
+                    <a class="dropdown-item" href="javascript:;">Perfil</a>
+                    <form method="post" action="{% url 'logout' %}" style="display: inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="dropdown-item">
+                            <i class="fa fa-sign-out pull-right"></i>Cerrar Sesión
+                        </button>
+                    </form>
+                </div>
                 </li>
 
                 
