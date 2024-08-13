@@ -1,8 +1,12 @@
 from django.shortcuts import render
+from django.http import HttpResponse
 
+TEMPLATE_DIRS = {
+    'os.path.join(BASE_DIR, "templates)'
+}
 
-def home(request):
-    return render(request, 'home.html')
+def index(request):
+    return render(request, 'index.html')
 
 def alumnos(request):
     return render(request, 'alumno.html')
