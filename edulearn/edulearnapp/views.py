@@ -1,14 +1,20 @@
 from django.shortcuts import redirect, render
 from django.http import HttpResponse
+<<<<<<< HEAD
 from .models import Alumno
 from .forms import AlumnoForm
 
+=======
+from django.contrib.auth.decorators import login_required
+>>>>>>> 28bc65d23ee0505f0f85f07ed3fc89e716f450be
 TEMPLATE_DIRS = {
     'os.path.join(BASE_DIR, "templates)'
 }
 
+@login_required
 def index(request):
     return render(request, 'index.html')
+
 
 def alumnos(request):
     return render(request, 'alumno.html')
