@@ -1,0 +1,85 @@
+{% extends 'index.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block head %} 
+    <link rel="stylesheet" href="{% static 'lib/datatables-pdf/css/buttons.dataTables.min.css' %}"> 
+{% endblock head %}
+
+{% block content %}
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Historial de Calificaciones</h1>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card card-dark">
+                <div class="card-header">
+                    <h3 class="card-title">Calificaciones Registradas</h3>
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                            <i class="fas fa-minus"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <table class="table" id="table-calificaciones">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Alumno</th>
+                                <th>Curso</th>
+                                <th>Nota</th>
+                                <th>Descripción</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for calificacion in calificaciones %}
+                                <tr>
+                                    <td>{{ calificacion.id }}</td>
+                                    <td>{{ calificacion.alumno.nombre }} {{ calificacion.alumno.apellido }}</td>
+                                    <td>{{ calificacion.curso.nombre }}</td>
+                                    <td>{{ calificacion.nota }}</td>
+                                    <td>{{ calificacion.descripcion }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card-footer">
+                    <a href="{% url 'dashboard' %}" class="btn btn-secondary">
+                        <i class="fa fa-arrow-left"></i> Volver
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}
+
+{% block javascripts %}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="{% static 'lib/datatables-pdf/js/dataTables.buttons.min.js' %}"></script>
+    <script src="{% static 'lib/datatables-pdf/js/pdfmake.min.js' %}"></script>
+    <script src="{% static 'lib/datatables-pdf/js/jszip.min.js' %}"></script>
+    <script src="{% static 'lib/datatables-pdf/js/vfs_fonts.js' %}"></script>
+    <script src="{% static 'lib/datatables-pdf/js/buttons.html5.min.js' %}"></script>
+    <script src="{% static 'lib/datatables-pdf/js/buttons.print.min.js' %}"></script>
+    <script>
+        $(function () {
+            $('#table-calificaciones').DataTable({
+                dom: 'Bfrtip',
+                buttons: [
+                    'csv', 'excel', 'pdf', 'print'
+                ]
+            });
+        });
+    </script>
+{% endblock javascripts %}

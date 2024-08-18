@@ -1,0 +1,102 @@
+{% extends 'index.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% block head %}
+  <style>
+    .select2 { width: 100% !important; }
+    .form-control-custom { border-radius: 0.25rem; padding: 0.75rem; }
+    .btn-custom { background-color: #007bff; color: #fff; }
+    .btn-back { background-color: #6c757d; color: #fff; }
+  </style>
+{% endblock head %}
+
+{% block content %}
+<!-- Content Header (Page header) -->
+<section class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1>Crear Alumno</h1>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Main content -->
+<section class="content">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header bg-black">
+          <h3 class="card-title">Formulario de Alumno</h3>
+        </div>
+        <div class="card-body">
+          <form method="post" action="{% url 'alumno-create' %}" id="alumnoForm">
+            {% csrf_token %}
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="{{ form.nombre.id_for_label }}">Nombre:</label>
+                  {{ form.nombre|add_class:'form-control form-control-custom' }}
+                </div>
+                <div class="form-group">
+                  <label for="{{ form.apellido.id_for_label }}">Apellido:</label>
+                  {{ form.apellido|add_class:'form-control form-control-custom' }}
+                </div>
+                <div class="form-group">
+                  <label for="{{ form.dni.id_for_label }}">DNI:</label>
+                  {{ form.dni|add_class:'form-control form-control-custom' }}
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="{{ form.email.id_for_label }}">Email:</label>
+                  {{ form.email|add_class:'form-control form-control-custom' }}
+                </div>
+                <div class="form-group">
+                  <label for="{{ form.telefono.id_for_label }}">Teléfono:</label>
+                  {{ form.telefono|add_class:'form-control form-control-custom' }}
+                </div>
+                <div class="form-group">
+                  <label for="{{ form.fecha_nacimiento.id_for_label }}">Fecha de Nacimiento:</label>
+                  {{ form.fecha_nacimiento|add_class:'form-control form-control-custom' }}
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <button type="submit" class="btn btn-custom">Crear Alumno</button>
+            </div>
+          </form>
+          <a href="{% url 'dashboard' %}" class="btn btn-back">
+            <i class="fa fa-arrow-left"></i> Volver
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock content %}
+
+{% block javascripts %}
+<!-- SweetAlert script here -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+  document.getElementById('alumnoForm').addEventListener('submit', function(e) {
+    e.preventDefault(); // Prevent the default form submission
+    Swal.fire({
+      title: '¿Estás seguro?',
+      text: "¡Quieres crear este alumno!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sí, crear',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.submit(); // Submit the form if confirmed
+      }
+    });
+  });
+</script>
+{% endblock javascripts %}

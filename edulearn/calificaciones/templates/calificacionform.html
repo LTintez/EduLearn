@@ -1,0 +1,51 @@
+{% extends 'index.html' %}
+{% load widget_tweaks %}
+
+{% block content %}
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Registrar Calificación</h1>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card card-dark">
+                <div class="card-header">
+                    <h3 class="card-title">Formulario de Calificación</h3>
+                </div>
+                <div class="card-body">
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="{{ form.alumno.id_for_label }}">Alumno</label>
+                            {% render_field form.alumno class="form-control" %}
+                        </div>
+                        <div class="form-group">
+                            <label for="{{ form.curso.id_for_label }}">Curso</label>
+                            {% render_field form.curso class="form-control" %}
+                        </div>
+                        <div class="form-group">
+                            <label for="{{ form.nota.id_for_label }}">Nota</label>
+                            {% render_field form.nota class="form-control" %}
+                        </div>
+                        <div class="form-group">
+                            <label for="{{ form.descripcion.id_for_label }}">Descripción</label>
+                            {% render_field form.descripcion class="form-control" %}
+                        </div>
+                        <button type="submit" class="btn btn-success">Guardar</button>
+                        <a href="{% url 'dashboard' %}" class="btn btn-secondary">
+                            <i class="fa fa-arrow-left"></i> Volver
+                        </a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}

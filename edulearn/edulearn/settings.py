@@ -38,7 +38,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'edulearnapp'
+    'edulearnapp',
+    'dashboard',
+    'alumnos',
+    'cursos',
+    'profesores',
+    'calificaciones',
+    'widget_tweaks',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -80,7 +87,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'edulearn_db',
         'USER': 'root',
-        'PASSWORD': 'romaleonefrainyogurt',        
+        'PASSWORD': 'root',        
         'HOST': '127.0.0.1',
         'PORT': 3306,
     }
@@ -128,8 +135,8 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-LOGIN_URL = 'login'
+LOGIN_URL = '/templates/registration/'
 
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/dashboard/'
 
-LOGOUT_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = 'login'

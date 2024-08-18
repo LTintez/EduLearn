@@ -1,0 +1,90 @@
+{% extends 'index.html' %}
+{% load widget_tweaks static %}
+
+{% block head %} 
+    <link rel="stylesheet" href="{% static 'lib/datatables-pdf/css/buttons.dataTables.min.css' %}"> 
+{% endblock head %}
+
+{% block content %}
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Buscar calificaciones de un Alumno</h1>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card card-dark">
+                <div class="card-header">
+                    <h3 class="card-title">Formulario de Búsqueda</h3>
+                </div>
+                <div class="card-body">
+                    <form method="get" action="{% url 'buscar-calificaciones' %}">
+                        <div class="form-group">
+                            <label for="dni">Ingrese el DNI del Alumno:</label>
+                            <input type="text" name="dni" id="dni" class="form-control" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Buscar</button>
+                    </form>
+                    {% if alumno %}
+                        <h3 class="mt-5">Calificaciones de {{ alumno.nombre }} {{ alumno.apellido }}</h3>
+                        <table class="table" id="table-calificaciones">
+                            <thead>
+                                <tr>
+                                    <th>Curso</th>
+                                    <th>Nota</th>
+                                    <th>Descripción</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for calificacion in calificaciones %}
+                                    <tr>
+                                        <td>{{ calificacion.curso.nombre }}</td>
+                                        <td>{{ calificacion.nota }}</td>
+                                        <td>{{ calificacion.descripcion }}</td>
+                                    </tr>
+                                {% empty %}
+                                    <tr>
+                                        <td colspan="3">No hay calificaciones para este alumno.</td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    {% endif %}
+                </div>
+                <div class="card-footer">
+                    <a href="{% url 'dashboard' %}" class="btn btn-secondary">
+                        <i class="fa fa-arrow-left"></i> Volver
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}
+
+{% block javascripts %}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="{% static 'lib/datatables-pdf/js/jquery.dataTables.min.js' %}"></script>
+    <script src="{% static 'lib/datatables-pdf/js/dataTables.buttons.min.js' %}"></script>
+    <script src="{% static 'lib/datatables-pdf/js/pdfmake.min.js' %}"></script>
+    <script src="{% static 'lib/datatables-pdf/js/jszip.min.js' %}"></script>
+    <script src="{% static 'lib/datatables-pdf/js/vfs_fonts.js' %}"></script>
+    <script src="{% static 'lib/datatables-pdf/js/buttons.html5.min.js' %}"></script>
+    <script src="{% static 'lib/datatables-pdf/js/buttons.print.min.js' %}"></script>
+    <script>
+        $(function () {
+            $('#table-calificaciones').DataTable({
+                dom: 'Bfrtip',
+                buttons: [
+                    'csv', 'excel', 'pdf', 'print'
+                ]
+            });
+        });
+    </script>
+{% endblock javascripts %}

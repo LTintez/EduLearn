@@ -1,0 +1,156 @@
+{% load static %}
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+  <!-- Brand Logo -->
+  <a href="#" class="brand-link logo-switch">
+    <img
+      src="{%static 'logos/logo1.jpg'%}"
+      alt="AdminLTE Docs Logo Small"
+     
+      class="brand-image-xl logo-xs"
+    />
+    <span class="brand-text-xs logo-xl">EDULEARN</span>
+  </a>
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <!-- Sidebar user (optional) -->
+
+
+    <!-- Sidebar Menu -->
+    <nav class="mt-2">
+      <ul
+        class="nav nav-pills nav-sidebar flex-column nav-child-indent"
+        data-widget="treeview"
+        role="menu"
+        data-accordion="false"
+      >
+        <!-- Add icons to the links using the .nav-icon class
+         with font-awesome or any other icon font library -->
+        <li class="nav-item">
+          <a href="{% url 'dashboard' %}" class="nav-link ">
+            <i class="fa-solid fa-table-cells-large nav-icon"></i>
+            <p>
+              Dashboard
+            </p>
+          </a>
+        </li>
+ 
+      <li class="nav-item has-treeview">
+        <a href="#" class="nav-link">
+          <i class="nav-icon fas fa-book"></i>
+          <p>
+            Administración
+            <i class="right fas fa-angle-left"></i>
+          </p>
+        </a>
+        <ul class="nav nav-item nav-treeview">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-users"></i>
+            <p>
+              Alumnos
+              <i class="right fas fa-angle-left"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="{% url 'alumno-create' %}" class="nav-link">
+                <i class="fas fa-user-plus nav-icon"></i>
+                <p>Nuevo alumno</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{% url 'alumno-list' %}" class="nav-link">
+                <i class="fas fa-list nav-icon"></i>
+                <p>Lista de alumnos</p>
+              </a>
+            </li>
+          </ul>
+        </ul>
+        <ul class="nav-item nav-treeview ">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-book-open"></i>
+            <p>
+              Cursos
+              <i class="right fas fa-angle-left"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="{% url 'curso-create' %}" class="nav-link">
+                <i class="fas fa-user-plus nav-icon"></i>
+                <p>Nuevo curso</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{% url 'curso-list' %}" class="nav-link">
+                <i class="fas fa-list nav-icon"></i>
+                <p>Lista de cursos</p>
+              </a>
+            </li>
+          </ul>
+        </ul>
+      </li>  
+
+
+
+        <li class="nav-item has-treeview ">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-school"></i>
+            <p>
+                Gestión Académica
+              <i class="right fas fa-angle-left"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+  
+            <li class="nav-item">
+              <a href="{% url 'alumno-inscribir' %}" class="nav-link">
+                <i class="fas fa-book-reader nav-icon"></i>
+                <p>Inscripción de alumno</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{% url 'alumnos-inscritos-list' %}" class="nav-link">
+                <i class="fas fa-address-book nav-icon"></i>
+                <p>Alumnos Inscriptos</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+
+        <li class="nav-item has-treeview ">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-award"></i>
+            <p>
+                Calificaciones
+              <i class="right fas fa-angle-left"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+  
+            <li class="nav-item">
+              <a href="{% url 'nueva-calificacion' %}" class="nav-link">
+                <i class="fas fa-plus nav-icon"></i>
+                <p>Ingresar calificación</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{% url 'calificaciones-listar' %}" class="nav-link">
+                <i class="fas fa-history nav-icon"></i>
+                <p>Historial de calificaciones</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{% url 'buscar-calificaciones' %}" class="nav-link">
+                <i class="fas fa-address-book nav-icon"></i>
+                <p>Consultar calificaciones</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+    <!-- /.sidebar-menu -->
+  </div>
+  <!-- /.sidebar -->
+</aside>
